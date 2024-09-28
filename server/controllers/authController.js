@@ -15,7 +15,9 @@ const signup = async (req, res) => {
     }
 
     if (password.length < 6) {
-      return res.status(400).json({ error: "password must be atleast 6 characters long" });
+      return res
+        .status(400)
+        .json({ error: "password must be atleast 6 characters long" });
     }
 
     //salt the password
@@ -70,16 +72,14 @@ const login = async (req, res) => {
   }
 };
 
-
 const logout = async (req, res) => {
-    try {
-        res.cookie("jwt", "", { maxAge: 0 })
-        res.status(200).json({message:"logged out successfully"})
-    } catch (error) {
-        res.status(500).json({error:"internal server error"})
-    }
-}
-
+  try {
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "logged out successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
+};
 
 const verifyme = async (req, res) => {
   try {
@@ -107,4 +107,4 @@ const verifyme = async (req, res) => {
   }
 };
 
-module.exports = { signup, login,logout,verifyme };
+module.exports = { signup, login, logout, verifyme };
